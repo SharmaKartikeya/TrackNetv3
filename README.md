@@ -34,7 +34,7 @@ Corresponding heatmap:
 
 ---
 
-## train.py Parameters cheatsheet
+## train.yaml Parameters cheatsheet
 | Argument name      | Type  | Default value | Description |
 |--------------------|-------|---------------|-------------|
 |weights                |str    |None           |Path to initial weights the model should be loaded with. If not specified, the model will be initialized with random weights.|
@@ -60,6 +60,5 @@ Corresponding heatmap:
 |grayscale              | -     | -             |Use grayscale images instead of RGB.')|
 |single_batch_overfit   | -     | -             |Overfit the model on a single batch.')|
 
-Arguments without type or default value are used without an additional value, e.x.
 
 Credits: https://github.com/mareksubocz/TrackNet/tree/main
