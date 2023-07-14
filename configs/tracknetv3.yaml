@@ -1,0 +1,28 @@
+model_version: B0
+model: TrackNetv3
+# backbone_indices: None
+# decoder_channels: [256, 128, 64, 32, 16]
+# norm_layer: nn.BatchNorm2d
+
+layers: [
+    [ConvBlock, 32, 3, 2, 1],
+    [MBConv, 16, 3, 1, 1, 1, 4],
+    [MBConv, 24, 3, 2, 2, 6, 24],
+    [MBConv, 40, 5, 2, 2, 6, 24],
+    [MBConv, 80, 3, 2, 3, 6, 24],
+    [MBConv, 112, 5, 1, 3, 6, 24],
+    [MBConv, 192, 5, 2, 4, 6, 24],
+    [MBConv, 320, 3, 1, 1, 6, 24],
+    [ConvBlock, 1280, 1, 1, 1]
+]
+
+phis: {
+        "B0" : [0, 224, 0.2], 
+        "B1" : [0.5, 240, 0.2],
+        "B2" : [1, 260, 0.3],
+        "B3" : [2, 300, 0.3],
+        "B4" : [3, 380, 0.4],
+        "B5" : [4, 456, 0.4],
+        "B6" : [5, 528, 0.5],
+        "B7" : [6, 600, 0.5]
+}

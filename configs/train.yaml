@@ -1,0 +1,36 @@
+agent: TrackNetv3Agent
+
+weights: None
+project_name: tracknetv3
+checkpoint: None
+loss_function: wbce
+seed: 0
+batch_size: 4 # try changing this
+val_batch_size: 1
+epochs: 30
+train_size: 0.8
+lr: 0.01
+momentum: 0.95
+dropout: 0.0
+weight_decay: 0.0
+sequence_length: 3
+pos_factor: 5
+image_size: [512, 1024]
+dataset: datasets/video_dataset/
+device: cuda
+type: video
+checkpoint_period: 1
+log_period: 100
+save_path: weights/
+images_dir: images/
+videos_dir: videos/
+csvs_dir: csvs/
+save_weights_only: False
+include_dups: True
+no_shuffle: False
+tensorboard: True
+wandb: False
+one_output_frame: False
+save_images: False
+grayscale: False
+single_batch_overfit: False

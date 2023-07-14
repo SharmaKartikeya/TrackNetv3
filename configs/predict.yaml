@@ -1,0 +1,13 @@
+agent: TrackNetv3Agent
+
+video: datasets/video_dataset/videos/1_01_04.mp4
+save_path: predict_output.mp4
+weights: weights/2023-07-11_11-57-56/best.pt
+sequence_length: 3
+image_size: [512, 1024]
+device: cuda
+one_output_frame: False
+grascale: False
+visualize: True
+waitBetweenFrames: 50
+brightness_thresh: 0.1
