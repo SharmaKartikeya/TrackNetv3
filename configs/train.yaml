@@ -14,7 +14,7 @@ momentum: 0.95
 dropout: 0.0
 weight_decay: 0.0
 sequence_length: 3
-pos_factor: 5
+pos_factor: 7
 image_size: [512, 1024]
 dataset: datasets/video_dataset/
 device: cuda

@@ -32,7 +32,7 @@ class TrackNetv3Agent(BaseAgent):
             'mse': nn.MSELoss(),
             'euc': EuclideanLoss(),
             'huber': nn.HuberLoss(),
-            'wbce': nn.BCEWithLogitsLoss(pos_weight=torch.tensor(config.pos_factor)),
+            'wbce': WBCE(config.pos_factor),
             'l1': nn.L1Loss(),
             'adwing': AdaptiveWingLoss(),
             'my_loss': MyLoss(config.pos_factor)
@@ -40,12 +40,20 @@ class TrackNetv3Agent(BaseAgent):
 
         self.loss = loss_functions[self.config.loss_function]
 
-        self.optimizer = torch.optim.SGD(
+        # self.optimizer = torch.optim.SGD(
+        #     self.model.parameters(),
+        #     lr=config.lr,
+        #     momentum=config.momentum, 
+        #     weight_decay=config.weight_decay
+        # )
+
+        self.optimizer = torch.optim.Adam(
             self.model.parameters(),
             lr=config.lr,
-            momentum=config.momentum, 
             weight_decay=config.weight_decay
         )
+
+        
 
         if config.type == 'auto':
             full_dataset = dataset.GenericDataset.from_dir(config)
@@ -55,8 +63,6 @@ class TrackNetv3Agent(BaseAgent):
             full_dataset = dataset.VideosDataset(config)
         else:
             raise Exception("type argument must be one of {'auto', 'image', 'video'}")
-
-        accessed = full_dataset[61]
 
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
             self.optimizer,
@@ -139,7 +145,7 @@ class TrackNetv3Agent(BaseAgent):
             pbar = tqdm(self.train_loader)
             for batch_idx, (X, y) in enumerate(pbar):
                 X, y = X.to(self.device), y.to(self.device)
-                
+
                 y_pred = self.model(X)
                 loss = self.loss(y_pred, y)
                 

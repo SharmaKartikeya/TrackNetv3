@@ -33,10 +33,6 @@ def process_configs(yaml_files: list):
         )
         print(f"Save Path: {config.save_path}")
         create_dirs([config.save_path])
-
-    elif config.save_path:
-        f = open(config.save_path, 'wb')
-        f.close()
         
 
     return config

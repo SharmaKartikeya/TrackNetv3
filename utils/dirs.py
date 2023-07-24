@@ -16,14 +16,4 @@ def create_dirs(dirs: list):
         logging.getLogger("Dirs Creator").info("Creating directories error: {0}".format(err))
         exit(-1)
 
-def create_video(path: str):
-    """
-    path - a str indicating the path of the video to be created
-    """
-    try:
-        video = open(path, 'wb')
-        video.close()
-    except:
-        print(f"Could not create {path}")
-
     
