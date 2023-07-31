@@ -1,6 +1,6 @@
 import os
 
-folder_paths = ['datasets/video_dataset/yolo_annotations/16_6s']
+folder_paths = ['datasets/video_dataset/yolo_annotations/Cam_0']
 
 for folder in folder_paths:
     # Each folder must have an `obj_train_data` sub directory in it

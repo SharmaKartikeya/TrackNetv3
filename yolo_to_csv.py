@@ -8,10 +8,15 @@ videos = 'datasets/video_dataset/videos'
 fields = ['frame_num', 'x', 'y', 'w', 'h', 'visible']
 
 for video in os.listdir(videos):
+    if not video.lower().endswith('.mp4'):
+        continue
+    
     name = video.split('.')[0]
+    print(name)
     yolo_ann_dir = os.path.join(yolo_annotations, name)
+    print(yolo_ann_dir)
     obj_train_data_path = os.path.join(yolo_ann_dir, 'obj_train_data')
-
+    print(obj_train_data_path)
     csv_path = os.path.join(csvs, name + '.csv')
     csv_file = open(csv_path, "w")
     csvwriter = csv.writer(csv_file)
